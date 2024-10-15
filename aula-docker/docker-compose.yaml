@@ -1,0 +1,18 @@
+services: #serviços
+  django: #nome do serviço
+    #image:  #imagem ou
+    build: #dockerfile
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - 8000:8000 #porta de entrada do container para a porta 8000 da maquina host
+    volumes:
+      - .:/app #Volume que será sincronizado com container de "." para "/app"
+
+  postgres:
+    image: postgres:15.8-alpine3.20 #imagem que será usada
+    environment:
+      - POSTGRES_DB=django
+      - POSTGRES_PASSWORD=root
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data

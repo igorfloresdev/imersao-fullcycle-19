@@ -1,0 +1,14 @@
+# IMAGEM BASE
+FROM python:3.12.6-slim
+
+# CRIA O PRIMEIRO USUÁRIO 1000 NON-ROOT
+RUN useradd -ms /bin/bash my-user
+
+# INSTALA O PIPENV DE FORMA GLOBAL
+RUN pip install pipenv
+
+# DEFINE USUARIO PADRÃO
+USER my-user
+
+# COMANDO PARA PARAR O CONTAINER APÓS EXECUÇÃO
+CMD ["tail", "-f", "/dev/null"]
